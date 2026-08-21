@@ -9,14 +9,10 @@ import {
   Phone, 
   Check, 
   Copy, 
-  Sliders, 
   Sparkles, 
   TrendingUp, 
   Brain, 
-  ShieldCheck,
-  Trophy,
-  Award,
-  MapPin
+  ShieldCheck
 } from 'lucide-react';
 import { LinkedInIcon, GitHubIcon } from '@/components/Icons';
 
@@ -195,12 +191,6 @@ export default function Hero({ onOpenResume }: HeroProps) {
                 <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-800/80 text-[11px] font-medium text-slate-200 flex items-center gap-1.5 shadow-lg">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <span>Bangalore, India</span>
-                </div>
-
-                {/* Floating Badge 1 (Top Left): Rookie Rockstar */}
-                <div className="absolute top-3 left-3 px-3 py-1.5 rounded-xl bg-amber-950/90 backdrop-blur-md border border-amber-500/40 text-amber-200 text-[11px] font-bold flex items-center gap-1.5 shadow-lg shadow-black/40">
-                  <Trophy className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>Rookie Rockstar &apos;25</span>
                 </div>
 
                 {/* Bottom Overlay Info Banner */}
