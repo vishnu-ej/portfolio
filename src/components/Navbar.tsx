@@ -56,8 +56,8 @@ export default function Navbar({ onOpenResume }: NavbarProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'py-3 glass-panel border-b border-slate-800/80 bg-slate-950/80 shadow-lg shadow-black/40'
+        isScrolled || mobileMenuOpen
+          ? 'py-3 border-b border-slate-800 bg-[#07090e] shadow-2xl shadow-black/80'
           : 'py-5 bg-transparent'
       }`}
     >
@@ -150,8 +150,8 @@ export default function Navbar({ onOpenResume }: NavbarProps) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden glass-panel border-b border-slate-800 bg-slate-950/95 px-5 py-6 mt-3 space-y-3 animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="grid grid-cols-2 gap-2">
+        <div className="lg:hidden border border-slate-800 bg-[#090d16] rounded-2xl p-5 mt-3 space-y-4 shadow-2xl shadow-black/90 animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="grid grid-cols-2 gap-2.5">
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -159,22 +159,22 @@ export default function Navbar({ onOpenResume }: NavbarProps) {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 p-2.5 rounded-lg text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900/80 border border-transparent hover:border-slate-800 transition-all"
+                  className="flex items-center gap-2.5 p-3 rounded-xl text-xs font-semibold text-slate-200 hover:text-cyan-300 bg-[#111726] border border-slate-800 hover:border-cyan-500/50 hover:bg-[#162035] transition-all"
                 >
-                  <Icon className="w-4 h-4 text-cyan-400" />
+                  <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
                   <span>{link.name}</span>
                 </a>
               );
             })}
           </div>
 
-          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
+          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2.5">
             <button
               onClick={() => {
                 copyEmail();
                 setMobileMenuOpen(false);
               }}
-              className="w-full py-2.5 px-4 text-xs font-medium text-slate-200 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-4 text-xs font-medium text-slate-200 bg-[#111726] border border-slate-800 rounded-xl flex items-center justify-center gap-2 hover:border-slate-700"
             >
               <Copy className="w-4 h-4 text-cyan-400" />
               <span>{copiedEmail ? 'Email Copied!' : 'Copy Email Address'}</span>
@@ -184,7 +184,7 @@ export default function Navbar({ onOpenResume }: NavbarProps) {
                 onOpenResume();
                 setMobileMenuOpen(false);
               }}
-              className="w-full py-2.5 px-4 text-xs font-semibold text-white bg-gradient-to-r from-cyan-600 to-indigo-600 rounded-lg flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-4 text-xs font-semibold text-white bg-gradient-to-r from-cyan-600 to-indigo-600 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-cyan-950/40"
             >
               <FileText className="w-4 h-4" />
               <span>View Full Structured Resume</span>
