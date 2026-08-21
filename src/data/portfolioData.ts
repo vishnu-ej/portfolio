@@ -1,0 +1,503 @@
+import {
+  ExperienceItem,
+  ProjectItem,
+  AwardItem,
+  EducationItem,
+  CertificationItem,
+  SkillCategory,
+  ResearchPublication,
+} from '@/types';
+
+export const personalInfo = {
+  name: 'VISHNU E J',
+  roleTitle: 'Product & Performance Analyst | Data Scientist',
+  tagline: 'Bridging Data Science, Performance Marketing & Growth Analytics',
+  headline: 'Transforming acquisition funnels into high-yield growth engines through deep data modeling, cohort experimentation, and customized landing page optimization.',
+  bio: "Data-driven Product & Performance Analyst with a Master's in Data Science from CHRIST University and extensive experience scaling conversion funnels, building customized landing pages, and experimenting using self-serve platforms. Currently driving high-intent growth at Great Learning and managing $850K+ monthly budgets.",
+  email: 'vishnuej6@gmail.com',
+  phone: '+91 8089980656',
+  location: 'Bangalore, India (Hybrid / Remote)',
+  linkedin: 'https://linkedin.com/in/vishnu-ej',
+  github: 'https://github.com/vishnu-ej',
+  resumeUrl: '#resume-modal',
+  status: 'Open to High-Impact Opportunities',
+};
+
+export const heroStats = [
+  {
+    id: 'budget',
+    value: '$850K+',
+    label: 'Monthly Ad Budgets Modeled',
+    sublabel: 'Quantitative tracking & ROI maximization',
+    color: 'from-blue-500 to-cyan-400',
+  },
+  {
+    id: 'growth',
+    value: '20–30%',
+    label: 'International Revenue Scale',
+    sublabel: 'Acquisition workflow optimization',
+    color: 'from-emerald-500 to-teal-400',
+  },
+  {
+    id: 'award',
+    value: '< 12 Mo',
+    label: 'Promoted to Asst. Manager',
+    sublabel: 'Rookie Rockstar Award (Dec 2025)',
+    color: 'from-amber-500 to-orange-400',
+  },
+  {
+    id: 'scholarships',
+    value: '₹9+ Lakhs',
+    label: 'Merit Scholarships Won',
+    sublabel: 'Reliance Foundation & National PG',
+    color: 'from-purple-500 to-indigo-400',
+  },
+  {
+    id: 'education',
+    value: '3.56 / 4',
+    label: 'MSc Data Science CGPA',
+    sublabel: '93.3% in BSc Mathematics',
+    color: 'from-rose-500 to-pink-400',
+  },
+];
+
+export const skillCategories: SkillCategory[] = [
+  {
+    name: 'Product & Growth Analytics',
+    icon: 'TrendingUp',
+    description: 'Deconstructing user journeys, friction points, and multi-channel attribution to maximize conversion velocity.',
+    skills: [
+      { name: 'Funnel Analysis & Drop-off Mapping', level: 'Expert', highlight: true },
+      { name: 'A/B Testing & Experimentation', level: 'Expert', highlight: true },
+      { name: 'Cohort & Retention Analysis', level: 'Expert', highlight: true },
+      { name: 'Landing Page Personalization', level: 'Expert', highlight: true },
+      { name: 'User Journey & Friction Auditing', level: 'Advanced' },
+      { name: 'Metric Instrumentation & Tracking', level: 'Advanced' },
+      { name: 'CAC & LTV Optimization', level: 'Advanced' },
+      { name: 'Multi-touch Attribution Modeling', level: 'Proficient' },
+    ],
+  },
+  {
+    name: 'Data Analytics & Querying',
+    icon: 'Database',
+    description: 'Transforming massive multi-source datasets into structured queries, clean pipelines, and actionable executive insights.',
+    skills: [
+      { name: 'SQL (MySQL, Oracle, MS SQL)', level: 'Expert', tools: 'Complex joins, window functions, CTEs', highlight: true },
+      { name: 'Python (pandas, NumPy)', level: 'Expert', tools: 'Data wrangling, statistical analysis', highlight: true },
+      { name: 'Advanced MS Excel & Power Query', level: 'Expert', tools: 'VBA, nested formulas, dynamic arrays' },
+      { name: 'Google Sheets & Apps Script', level: 'Advanced' },
+      { name: 'Exploratory Data Analysis (EDA)', level: 'Expert' },
+      { name: 'Statistical Hypothesis Testing', level: 'Advanced' },
+      { name: 'R Language', level: 'Proficient' },
+    ],
+  },
+  {
+    name: 'AI, LLMs & Automation',
+    icon: 'Cpu',
+    description: 'Orchestrating agentic workflows, RAG pipelines, and automated intelligence tools to eliminate operational bottlenecks.',
+    skills: [
+      { name: 'Retrieval-Augmented Generation (RAG)', level: 'Advanced', tools: 'Vector search, context chunking', highlight: true },
+      { name: 'Custom Internal AI Tooling', level: 'Advanced', highlight: true },
+      { name: 'Zapier & Webhook Workflows', level: 'Expert', tools: 'Automated CRM & lead scoring pipelines' },
+      { name: 'Semrush & Competitive Intelligence', level: 'Advanced' },
+      { name: 'Groq API & LLM Inference', level: 'Advanced' },
+      { name: 'Lead Qualification Automation', level: 'Expert' },
+      { name: 'NLP & Sentiment Analysis', level: 'Advanced' },
+    ],
+  },
+  {
+    name: 'Visualization & BI Dashboards',
+    icon: 'BarChart3',
+    description: 'Designing intuitive, high-refresh executive dashboards that bridge technical metrics and commercial decision-making.',
+    skills: [
+      { name: 'Tableau', level: 'Expert', tools: 'Calculated fields, LOD expressions, interactive parameters', highlight: true },
+      { name: 'Power BI', level: 'Expert', tools: 'DAX, data modeling, KPI scorecards', highlight: true },
+      { name: 'Custom Reporting Dashboards', level: 'Expert' },
+      { name: 'Matplotlib & Seaborn', level: 'Advanced' },
+      { name: 'Executive Storytelling & Presentations', level: 'Expert' },
+    ],
+  },
+  {
+    name: 'Marketing Platforms & Developer Stack',
+    icon: 'Code2',
+    description: 'Hands-on execution across major ad engines, cloud environments, and modern development frameworks.',
+    skills: [
+      { name: 'Google Ads & Ads Editor', level: 'Expert', highlight: true },
+      { name: 'Meta Ads Manager', level: 'Advanced' },
+      { name: 'Google Cloud Platform (GCP)', level: 'Advanced' },
+      { name: 'Git & Version Control', level: 'Advanced' },
+      { name: 'Web Scraping (BeautifulSoup, Selenium)', level: 'Advanced' },
+      { name: 'Streamlit & Flask', level: 'Advanced' },
+      { name: 'MongoDB', level: 'Proficient' },
+    ],
+  },
+  {
+    name: 'Leadership & Soft Skills',
+    icon: 'Users',
+    description: 'Proven ability to lead cross-functional experiments and deliver rapid, high-impact business outcomes.',
+    skills: [
+      { name: 'Cross-functional Collaboration (Product / Eng / Mktg)', level: 'Expert', highlight: true },
+      { name: 'Strategic Problem-Solving', level: 'Expert' },
+      { name: 'Time & Pipeline Management', level: 'Expert' },
+      { name: 'Adaptability in High-Velocity Teams', level: 'Expert' },
+      { name: 'Data-driven Mentorship', level: 'Advanced' },
+    ],
+  },
+];
+
+export const experiences: ExperienceItem[] = [
+  {
+    id: 'gl-asst-manager',
+    role: 'Assistant Manager - Performance Marketing',
+    company: 'Great Learning',
+    location: 'Bangalore (Hybrid)',
+    period: 'Apr. 2026 – Present',
+    type: 'Full-Time',
+    current: true,
+    promotionBadge: 'Promoted from Sr. Executive in <12 Months',
+    description: [
+      'Developing a self-serve platform to customize landing pages (LPs) with tailored targeting hooks for high-intent audience cohorts, driving higher conversion rates and reducing funnel friction.',
+      'Leveraging AI tools and automation platforms including Zapier, Semrush, and custom internal AI models to automate lead workflows, perform competitive analysis, and streamline insight generation.',
+      'Built automated self-serve reporting dashboards and standardized metric definitions to track engagement, user journey drop-offs, and conversion outcomes across multiple product verticals.',
+      'Identified critical drop-offs across search-to-lead acquisition funnels, driving strategic product & marketing initiatives that improved overall funnel efficiency.',
+      'Led cross-functional collaboration between Product, Marketing, and Engineering teams to translate business requirements into automated workflow solutions and data-backed product experiments.',
+      'Spearheaded growth initiatives for international markets, optimizing acquisition workflows and scaling revenue performance by 20–30%.',
+    ],
+    skills: [
+      'Landing Page Personalization',
+      'AI Workflow Automation',
+      'Zapier & Custom AI Tools',
+      'Funnel Optimization',
+      'Cross-Functional Leadership',
+      'International Growth',
+      'Metric Instrumentation',
+    ],
+    metrics: [
+      { label: 'International Revenue Scale', value: '+20% to 30%' },
+      { label: 'Focus', value: 'Self-Serve LP Personalization & AI Automation' },
+    ],
+  },
+  {
+    id: 'gl-sr-executive',
+    role: 'Sr. Executive - Performance Marketing',
+    company: 'Great Learning',
+    location: 'Bangalore (Hybrid)',
+    period: 'Apr. 2025 – Mar. 2026',
+    type: 'Full-Time',
+    awardBadge: '🏆 Rookie Rockstar Award (Dec 2025)',
+    description: [
+      'Analyzed acquisition funnels, cohort behavior, and user drop-offs across major channels, optimizing audience targeting strategies to maximize ROI.',
+      'Evaluated A/B test results and performance parameters for newly launched program verticals, establishing data-backed growth frameworks.',
+      'Managed USD 850K+ monthly budgets through rigorous quantitative data analysis, performance modeling, and automated tracking reports.',
+      'Awarded Rookie Rockstar Award (Dec 2025) and promoted to Assistant Manager within 12 months for exceptional impact and metric growth.',
+    ],
+    skills: [
+      'USD 850K+ Budget Modeling',
+      'A/B Testing & Experimentation',
+      'Cohort Analysis',
+      'Google Ads & Meta Ads',
+      'ROI Maximization',
+      'SQL & Reporting Automation',
+    ],
+    metrics: [
+      { label: 'Monthly Ad Spend Managed', value: '$850K+' },
+      { label: 'Promotion Timeline', value: '< 12 Months' },
+      { label: 'Award', value: 'Rookie Rockstar (Dec 2025)' },
+    ],
+  },
+  {
+    id: 'deepspatial-ai',
+    role: 'Geospatial Analyst Intern',
+    company: 'Deepspatial AI',
+    location: 'Bangalore (Remote)',
+    period: 'Jan. 2025 – Jul. 2025',
+    type: 'Internship',
+    description: [
+      'Collected, cleaned, and structured complex geospatial datasets to support analytical decision-making and pattern identification.',
+      'Conducted literature reviews and exploratory data analysis (EDA) to frame hypotheses and present operational execution plans.',
+    ],
+    skills: [
+      'Geospatial Analytics',
+      'Data Cleaning & Structuring',
+      'Python',
+      'Exploratory Data Analysis',
+      'Hypothesis Formulation',
+    ],
+    metrics: [
+      { label: 'Domain', value: 'Geospatial AI & Location Intelligence' },
+    ],
+  },
+  {
+    id: 'intel-corp',
+    role: 'Data Science Trainee',
+    company: 'Intel Corporation',
+    location: 'Bangalore (Remote)',
+    period: 'May 2024 – Jul. 2024',
+    type: 'Trainee',
+    description: [
+      'Scraped user feedback and product data from multiple web sources to build custom datasets for sentiment analysis on Intel hardware and software products.',
+      'Trained NLP/ML models to extract user sentiment trends, translating qualitative user feedback into actionable insights for product development teams.',
+    ],
+    skills: [
+      'NLP & Sentiment Analysis',
+      'Web Scraping (BeautifulSoup/Selenium)',
+      'Machine Learning Modeling',
+      'Python (pandas, scikit-learn)',
+      'Product Feedback Intelligence',
+    ],
+    metrics: [
+      { label: 'Impact', value: 'Actionable Qualitative-to-Quantitative Insights' },
+    ],
+  },
+  {
+    id: 'psyliq',
+    role: 'Data Analyst Intern',
+    company: 'PSYLIQ',
+    location: 'Bangalore (Remote)',
+    period: 'Jan. 2024 – Feb. 2024',
+    type: 'Internship',
+    description: [
+      'Analyzed customer purchase and employee behavior datasets in Excel and Power BI to identify churn patterns and behavioral trends.',
+      'Designed interactive visualization dashboards to provide executive stakeholders with clear visibility into key performance indicators.',
+    ],
+    skills: [
+      'Power BI',
+      'Advanced Excel',
+      'Customer Churn Modeling',
+      'Behavioral Analytics',
+      'Interactive KPI Dashboards',
+    ],
+    metrics: [
+      { label: 'Deliverable', value: 'Interactive Churn & KPI Dashboards' },
+    ],
+  },
+];
+
+export const projects: ProjectItem[] = [
+  {
+    id: 'myhealth-app',
+    title: 'MYHealth App — Full-Stack & RAG Healthcare AI',
+    subtitle: 'Intelligent clinical record management, automated medical summaries & Groq-powered AI chatbot',
+    period: 'Jun. 2024 – Sep. 2024',
+    category: 'AI & Full-Stack',
+    featured: true,
+    description:
+      'A comprehensive full-stack healthcare web application combining document retrieval-augmented generation (RAG) with high-speed LLM inference to modernize clinical operations and patient interactions.',
+    bullets: [
+      'Developed a robust full-stack web application using Python, Flask, and MongoDB with interactive frontend components.',
+      'Implemented an automated medical record management system integrating RAG-based vector search and an intelligent AI chatbot using the ultra-fast Groq API.',
+      'Engineered automated medical summary generation, real-time appointment scheduling, and structured clinical health data extraction pipelines.',
+    ],
+    techStack: ['Python', 'Flask', 'Groq API', 'RAG', 'MongoDB', 'Vector Search', 'HTML/CSS/JS'],
+    metricsHighlight: 'Sub-second AI Clinical Summary & RAG Querying',
+    iconName: 'Activity',
+  },
+  {
+    id: 'diabetes-prediction',
+    title: 'ML Modular Diabetes Prediction Tool',
+    subtitle: 'End-to-end interactive diagnostic risk assessment platform with real-time parameter tuning',
+    period: 'Apr. 2024 – May 2024',
+    category: 'Machine Learning',
+    featured: true,
+    description:
+      'An end-to-end machine learning web application allowing medical practitioners and individuals to assess diabetes risk dynamically through clinical biomarker sliders and an interactive inference engine.',
+    bullets: [
+      'Built an end-to-end interactive machine learning web application using Streamlit to predict diabetes risk.',
+      'Executed rigorous data cleansing, outlier handling, feature engineering, and trained a K-Nearest Neighbors (KNN) classification model on Kaggle clinical datasets.',
+      'Designed a real-time parameter tuning interface enabling users to input custom clinical values (Glucose, Blood Pressure, BMI, Insulin, Age) for instant risk prediction.',
+    ],
+    techStack: ['Python', 'Streamlit', 'scikit-learn', 'KNN Classifier', 'Data Preprocessing', 'Pandas', 'NumPy'],
+    metricsHighlight: 'Interactive Real-Time Diagnostic Risk Inference',
+    iconName: 'BrainCircuit',
+  },
+  {
+    id: 'third-eye-blind',
+    title: 'Third Eye for the Blind — Smart Assistive IoT Device',
+    subtitle: 'Prototyped IoT navigation assistant with ultrasonic obstacle detection & emergency hardware triggers',
+    period: 'Jun. 2024 – Sep. 2024',
+    category: 'IoT & Hardware',
+    featured: true,
+    description:
+      'A smart wearable assistive device engineered to empower visually impaired individuals with spatial awareness, collision avoidance, and instant emergency notification capabilities.',
+    bullets: [
+      'Designed and prototyped an IoT-enabled smart assistive navigation device utilizing Arduino UNO, ultrasonic sensors, and haptic feedback modules.',
+      'Integrated real-time obstacle detection algorithms with variable-frequency buzzer and vibration alerts to prevent collisions in dynamic environments.',
+      'Implemented an emergency alert system with dedicated hardware triggers to immediately notify designated emergency contacts during critical situations.',
+    ],
+    techStack: ['Arduino UNO', 'Ultrasonic Sensors', 'IoT', 'C++', 'Haptic Feedback', 'Hardware Circuitry'],
+    metricsHighlight: 'Zero-Latency Real-Time Spatial Obstacle Detection',
+    iconName: 'Eye',
+  },
+  {
+    id: 'lp-personalization-platform',
+    title: 'Self-Serve Landing Page Personalization Engine',
+    subtitle: 'Dynamic cohort targeting platform reducing search-to-lead friction across multiple product verticals',
+    period: '2026',
+    category: 'Growth & Analytics',
+    featured: true,
+    description:
+      'An internal growth architecture engineered at Great Learning to tailor messaging hooks, hero CTAs, and value propositions to high-intent search and ad cohorts.',
+    bullets: [
+      'Architected self-serve workflows that allow growth teams to spin up hyper-targeted landing page variations based on search query intent and audience segments.',
+      'Standardized metric instrumentation and funnel telemetry across Google Ads and Meta Ads acquisition pipelines.',
+      'Contributed directly to scaling international revenue run-rates by 20–30% through automated funnel drop-off mitigation.',
+    ],
+    techStack: ['Growth Analytics', 'A/B Testing', 'Zapier Automation', 'Landing Page CRO', 'Funnel Telemetry', 'SQL'],
+    metricsHighlight: '+20–30% Revenue Scale Across International Markets',
+    iconName: 'Zap',
+  },
+  {
+    id: 'genomic-cancer-research',
+    title: 'Precision Medicine: Drug Response in Cancer Patients',
+    subtitle: 'Genomic biomarker machine learning research paper presented at ICAIH 2025 conference',
+    period: 'Sep. 2024 – Mar. 2025',
+    category: 'Research',
+    featured: false,
+    description:
+      'Advanced bioinformatics and computational modeling research presented at the International Conference on AI in Healthcare (ICAIH 2025, St. Aloysius Mangalore).',
+    bullets: [
+      'Investigated genomic feature sets to model and predict pharmacological drug responses in heterogeneous cancer patient cohorts.',
+      'Applied dimensionality reduction and classification models to identify high-confidence biomarker correlations with drug efficacy.',
+      'Presented findings at ICAIH 2025, demonstrating the viability of ML pipelines in individualized clinical oncology treatment planning.',
+    ],
+    techStack: ['Bioinformatics', 'Genomic Data', 'Python', 'Machine Learning', 'ICAIH 2025', 'Statistical Modeling'],
+    metricsHighlight: 'Presented at ICAIH 2025 International Conference',
+    iconName: 'FileText',
+  },
+];
+
+export const awardsAndScholarships: AwardItem[] = [
+  {
+    id: 'reliance-scholarship',
+    title: 'Reliance Foundation Postgraduate Scholarship',
+    organization: 'Reliance Foundation',
+    date: 'Jun. 2024',
+    amount: 'INR 6,00,000 (6 Lakhs)',
+    type: 'Scholarship',
+    highlight: true,
+    description:
+      'Awarded a highly competitive, prestigious merit scholarship worth INR 6 Lakhs for 2 years of postgraduate studies in Data Science, recognizing academic excellence and leadership potential.',
+  },
+  {
+    id: 'national-pg-scholarship',
+    title: 'National Postgraduate Scholarship',
+    organization: 'Department of Higher Education, Ministry of Education, Govt. of India',
+    date: 'Aug. 2024',
+    amount: 'INR 3,00,000 (3 Lakhs)',
+    type: 'Scholarship',
+    highlight: true,
+    description:
+      'Recipient of the coveted national merit scholarship worth INR 3 Lakhs awarded by the Government of India to top-ranking postgraduate scholars.',
+  },
+  {
+    id: 'rookie-rockstar',
+    title: 'Rookie Rockstar Award',
+    organization: 'Great Learning',
+    date: 'Dec. 2025',
+    type: 'Corporate Award',
+    highlight: true,
+    description:
+      'Honored with the organization-wide Rookie Rockstar Award for outstanding contribution to acquisition funnel optimization, quantitative budget modeling, and driving international market scale.',
+  },
+  {
+    id: 'kerala-he-scholarship',
+    title: 'Kerala Higher Education Scholarship',
+    organization: 'Kerala State Higher Education Council',
+    date: 'Mar. 2021',
+    type: 'Scholarship',
+    highlight: false,
+    description:
+      'Conferred the prestigious state higher education merit scholarship in recognition of top academic rank in undergraduate Mathematics studies.',
+  },
+  {
+    id: 'central-sector-scholarship',
+    title: 'Central Sector Scheme of Scholarships (CSSS)',
+    organization: 'Department of Higher Education, Ministry of Education, Govt. of India',
+    date: 'Feb. 2021',
+    type: 'Scholarship',
+    highlight: false,
+    description:
+      'National scholarship awarded for top-tier academic percentile in Higher Secondary Board Examination.',
+  },
+];
+
+export const educationHistory: EducationItem[] = [
+  {
+    id: 'msc-data-science',
+    degree: 'MSc. Data Science',
+    institution: 'CHRIST (Deemed to be University), Bangalore',
+    location: 'Bangalore, India',
+    period: 'Jul. 2023 – May 2025',
+    score: '3.56 / 4.0 CGPA',
+    scoreLabel: 'Completed Masters with Distinction',
+    details: 'Advanced curriculum covering Machine Learning, Statistical Inference, Deep Learning, Big Data Systems, NLP, and Predictive Analytics.',
+    coursework: ['Machine Learning', 'Deep Learning & NLP', 'Statistical Modeling', 'Database Systems & SQL', 'Big Data Engineering'],
+  },
+  {
+    id: 'bsc-mathematics',
+    degree: 'BSc. Mathematics',
+    institution: 'St. Thomas College, Palai (Mahatma Gandhi University)',
+    location: 'Kottayam, Kerala',
+    period: 'Aug. 2020 – May 2023',
+    score: '93.3%',
+    scoreLabel: 'First Class with Distinction',
+    details: 'Rigorous foundation in pure and applied mathematics, probability theory, linear algebra, numerical methods, and mathematical statistics.',
+    coursework: ['Linear Algebra & Matrices', 'Probability & Statistics', 'Calculus & Differential Equations', 'Numerical Analysis', 'Abstract Algebra'],
+  },
+  {
+    id: 'higher-secondary',
+    degree: 'Higher Secondary School (12th Bio-Maths)',
+    institution: 'Holy Cross HSS, Cherpunkal (DHSE Kerala)',
+    location: 'Kerala, India',
+    period: 'Jun. 2018 – Apr. 2020',
+    score: '99.58%',
+    scoreLabel: 'State Top Percentile Rank',
+    details: 'Science stream with Biology and Mathematics combination.',
+  },
+  {
+    id: 'high-school',
+    degree: 'Secondary School Examination (10th CBSE)',
+    institution: 'Gayathri Central School, Puliyannoor (CBSE)',
+    location: 'Kerala, India',
+    period: 'Jun. 2017 – Mar. 2018',
+    score: '90.4%',
+    scoreLabel: 'First Class with Distinction',
+  },
+];
+
+export const researchPublication: ResearchPublication = {
+  title: 'Predicting Drug Response in Cancer Patients Using Genomic Data',
+  conference: 'International Conference on Artificial Intelligence in Healthcare (ICAIH 2025)',
+  location: 'St. Aloysius (Deemed to be University), Mangalore',
+  period: 'Sep. 2024 – Mar. 2025',
+  description:
+    'Authored and presented peer-reviewed research exploring machine learning algorithms applied to high-dimensional genomic biomarker profiles to accurately predict patient-specific pharmacological response rates in cancer therapeutics.',
+  tags: ['Precision Medicine', 'Genomics', 'Machine Learning', 'Biomarkers', 'Oncology', 'ICAIH 2025'],
+};
+
+export const certifications: CertificationItem[] = [
+  {
+    id: 'stanford-ml',
+    name: 'Machine Learning Specialization',
+    issuer: 'Stanford University & DeepLearning.AI (Coursera)',
+    date: 'June 2025',
+    skillsCovered: ['Supervised Learning', 'Neural Networks', 'Decision Trees', 'Unsupervised Learning', 'Recommender Systems'],
+    badgeColor: 'emerald',
+  },
+  {
+    id: 'google-cloud',
+    name: 'Google Cloud Computing Foundations',
+    issuer: 'Google Cloud',
+    date: 'May 2024',
+    skillsCovered: ['Cloud Infrastructure', 'BigQuery', 'Compute Engine', 'Cloud Storage', 'IAM & Cloud Security'],
+    badgeColor: 'blue',
+  },
+  {
+    id: 'ibm-data-analytics',
+    name: 'Introduction to Data Analytics',
+    issuer: 'IBM (Coursera)',
+    date: 'May 2024',
+    skillsCovered: ['Data Ecosystem', 'Data Gathering', 'Wrangling & Mining', 'Data Visualization', 'SQL & RDBs'],
+    badgeColor: 'purple',
+  },
+];
