@@ -158,7 +158,6 @@ export const experiences: ExperienceItem[] = [
     description: [
       'Developing a self-serve platform to customize landing pages (LPs) with tailored targeting hooks for high-intent audience cohorts, driving higher conversion rates and reducing funnel friction.',
       'Leveraging AI tools and automation platforms including Zapier, Semrush, and custom internal AI models to automate lead workflows, perform competitive analysis, and streamline insight generation.',
-      'Built automated self-serve reporting dashboards and standardized metric definitions to track engagement, user journey drop-offs, and conversion outcomes across multiple product verticals.',
       'Identified critical drop-offs across search-to-lead acquisition funnels, driving strategic product & marketing initiatives that improved overall funnel efficiency.',
       'Led cross-functional collaboration between Product, Marketing, and Engineering teams to translate business requirements into automated workflow solutions and data-backed product experiments.',
       'Spearheaded growth initiatives for international markets, optimizing acquisition workflows and scaling revenue performance by 20–30%.',
