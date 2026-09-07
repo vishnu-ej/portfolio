@@ -9,7 +9,9 @@ import {
   MapPin, 
   Check, 
   Copy, 
-  MessageSquare
+  MessageSquare,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import { LinkedInIcon, GitHubIcon } from '@/components/Icons';
 
@@ -24,7 +26,14 @@ export default function ContactSection() {
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({
+    type: null,
+    message: '',
+  });
 
   const handleCopy = (text: string, type: 'email' | 'phone') => {
     navigator.clipboard.writeText(text);
@@ -37,21 +46,63 @@ export default function ContactSection() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Trigger user's default email client with populated query params
-    const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
-      formData.subject || 'Portfolio Inquiry from ' + formData.name
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoUrl;
+    setIsSubmitting(true);
+    setStatus({ type: null, message: '' });
 
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 4000);
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent successfully.',
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else if (data.fallbackRequired) {
+        // Graceful fallback to mailto if API key is not yet set up
+        const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+          formData.subject || 'Portfolio Inquiry from ' + formData.name
+        )}&body=${encodeURIComponent(
+          `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        )}`;
+        window.location.href = mailtoUrl;
+
+        setStatus({
+          type: 'success',
+          message: 'Opening email to send your message. Thank you for reaching out!',
+        });
+      } else {
+        setStatus({
+          type: 'error',
+          message: data.error || 'Failed to send message. Please try again or email directly.',
+        });
+      }
+    } catch {
+      // Fallback on network/fetch exception
+      const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+        formData.subject || 'Portfolio Inquiry from ' + formData.name
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`;
+      window.location.href = mailtoUrl;
+
+      setStatus({
+        type: 'success',
+        message: 'Opening email to send your message. Thank you for reaching out!',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -175,7 +226,7 @@ export default function ContactSection() {
 
           </div>
 
-          {/* Right Column: Interactive Direct Message Form */}
+          {/* Right Column: Direct Message Form with Resend Integration */}
           <div className="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-2xl">
             <div className="flex items-center gap-2 mb-6">
               <MessageSquare className="w-4 h-4 text-cyan-400" />
@@ -243,16 +294,33 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-cyan-900/30 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all"
+                disabled={isSubmitting}
+                className="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-cyan-900/30 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <Send className="w-4 h-4" />
-                <span>Send Message via Email Client</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Sending Message...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Send Message via Email</span>
+                  </>
+                )}
               </button>
 
-              {submitted && (
-                <div className="p-3 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2">
-                  <Check className="w-4 h-4" />
-                  <span>Email client triggered! Thank you for getting in touch.</span>
+              {status.type === 'success' && (
+                <div className="p-3 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 animate-in fade-in">
+                  <Check className="w-4 h-4 shrink-0 text-emerald-400" />
+                  <span>{status.message}</span>
+                </div>
+              )}
+
+              {status.type === 'error' && (
+                <div className="p-3 rounded-lg bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs flex items-center gap-2 animate-in fade-in">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+                  <span>{status.message}</span>
                 </div>
               )}
             </form>
