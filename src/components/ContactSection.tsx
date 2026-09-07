@@ -65,40 +65,20 @@ export default function ContactSection() {
       if (data.success) {
         setStatus({
           type: 'success',
-          message: 'Thank you! Your message has been sent successfully.',
+          message: 'Thank you! Your message has been sent directly to my inbox via Resend.',
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
-      } else if (data.fallbackRequired) {
-        // Graceful fallback to mailto if API key is not yet set up
-        const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
-          formData.subject || 'Portfolio Inquiry from ' + formData.name
-        )}&body=${encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-        )}`;
-        window.location.href = mailtoUrl;
-
-        setStatus({
-          type: 'success',
-          message: 'Opening email to send your message. Thank you for reaching out!',
-        });
       } else {
         setStatus({
           type: 'error',
-          message: data.error || 'Failed to send message. Please try again or email directly.',
+          message: data.error || 'Failed to send message. Please try again.',
         });
       }
-    } catch {
-      // Fallback on network/fetch exception
-      const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
-        formData.subject || 'Portfolio Inquiry from ' + formData.name
-      )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      )}`;
-      window.location.href = mailtoUrl;
-
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : 'Network error. Could not send message.';
       setStatus({
-        type: 'success',
-        message: 'Opening email to send your message. Thank you for reaching out!',
+        type: 'error',
+        message: errorMsg,
       });
     } finally {
       setIsSubmitting(false);
@@ -311,14 +291,14 @@ export default function ContactSection() {
               </button>
 
               {status.type === 'success' && (
-                <div className="p-3 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 animate-in fade-in">
+                <div className="p-3.5 rounded-xl bg-emerald-950/90 border border-emerald-500/50 text-emerald-300 text-xs flex items-center gap-2.5 shadow-lg shadow-emerald-950/30 animate-in fade-in">
                   <Check className="w-4 h-4 shrink-0 text-emerald-400" />
                   <span>{status.message}</span>
                 </div>
               )}
 
               {status.type === 'error' && (
-                <div className="p-3 rounded-lg bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs flex items-center gap-2 animate-in fade-in">
+                <div className="p-3.5 rounded-xl bg-rose-950/90 border border-rose-500/50 text-rose-300 text-xs flex items-center gap-2.5 shadow-lg shadow-rose-950/30 animate-in fade-in">
                   <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
                   <span>{status.message}</span>
                 </div>
