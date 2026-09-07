@@ -29,48 +29,37 @@ export async function POST(request: Request) {
     const toEmail = process.env.RESEND_TO_EMAIL || 'vishnuej6@gmail.com';
     const fromEmail = process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
 
+    // Use the exact subject entered by the user
+    const emailSubject = subject && subject.trim().length > 0 
+      ? subject.trim() 
+      : `Message from ${name}`;
+
+    // Format plain text body: message followed by Name and Email at the bottom
+    const textBody = `${message.trim()}\n\n---\n${name.trim()}\n${email.trim()}`;
+
+    // Format HTML body
+    const htmlBody = `
+      <div style="font-family: Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #0f172a; max-width: 600px; padding: 20px;">
+        <div style="white-space: pre-wrap; font-size: 15px; color: #1e293b; margin-bottom: 24px;">
+${message.trim()}
+        </div>
+        
+        <div style="border-top: 1px solid #cbd5e1; padding-top: 14px; margin-top: 24px; color: #334155; font-size: 14px;">
+          <div style="font-weight: 700; color: #0f172a; font-size: 15px;">${name.trim()}</div>
+          <div style="margin-top: 2px;">
+            <a href="mailto:${email.trim()}" style="color: #0284c7; text-decoration: none;">${email.trim()}</a>
+          </div>
+        </div>
+      </div>
+    `;
+
     const emailResponse = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
-      replyTo: email,
-      subject: subject ? `Portfolio Inquiry: ${subject}` : `New Portfolio Message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-      html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #0f172a; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
-          <div style="background: linear-gradient(135deg, #06b6d4, #6366f1); padding: 16px 20px; border-radius: 8px; margin-bottom: 20px;">
-            <h2 style="color: #ffffff; margin: 0; font-size: 18px; font-weight: 700;">
-              📬 New Message from Portfolio
-            </h2>
-          </div>
-          
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-            <tr>
-              <td style="padding: 8px 0; color: #64748b; font-size: 13px; width: 90px; font-weight: 600;">Name:</td>
-              <td style="padding: 8px 0; color: #0f172a; font-size: 14px; font-weight: 600;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Email:</td>
-              <td style="padding: 8px 0; color: #0284c7; font-size: 14px;"><a href="mailto:${email}" style="color: #0284c7; text-decoration: none;">${email}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Subject:</td>
-              <td style="padding: 8px 0; color: #0f172a; font-size: 14px;">${subject || 'No subject provided'}</td>
-            </tr>
-          </table>
-
-          <div style="margin-top: 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px;">Message Content:</div>
-            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; font-size: 14px; color: #1e293b; white-space: pre-wrap;">
-${message}
-            </div>
-          </div>
-
-          <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 24px 0 12px 0;" />
-          <p style="font-size: 11px; color: #94a3b8; text-align: center; margin: 0;">
-            Sent directly from <a href="https://github.com/vishnu-ej/portfolio" style="color: #64748b; text-decoration: underline;">Vishnu E J's Portfolio</a>
-          </p>
-        </div>
-      `,
+      replyTo: email.trim(),
+      subject: emailSubject,
+      text: textBody,
+      html: htmlBody,
     });
 
     if (emailResponse.error) {
