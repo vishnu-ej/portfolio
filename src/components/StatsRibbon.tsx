@@ -2,44 +2,29 @@
 
 import React from 'react';
 import { heroStats } from '@/data/portfolioData';
-import { Sparkles } from 'lucide-react';
 
 export default function StatsRibbon() {
+  // Primary 3 highlight stat blocks as specified in the Awesomic design system
+  const displayStats = heroStats.slice(0, 3);
+
   return (
-    <section className="relative py-8 border-y border-slate-800/80 bg-slate-950/60 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 mb-4 pb-2 border-b border-slate-800/40">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-              Quantifiable Impact & Verified Highlights
-            </span>
-          </div>
-          <span className="text-[11px] text-slate-500 hidden sm:inline">
-            Performance Marketing • Data Science • Merit Honors
-          </span>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
-          {heroStats.map((stat) => (
+    <section className="bg-white border-y border-[#ececee] py-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#ececee]">
+          {displayStats.map((stat, idx) => (
             <div
-              key={stat.id}
-              className="relative p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-950/20 group"
+              key={stat.id || idx}
+              className={`flex flex-col items-center md:items-start text-center md:text-left ${
+                idx === 0 ? 'md:pr-8 pb-6 md:pb-0' : idx === 1 ? 'md:px-8 py-6 md:py-0' : 'md:pl-8 pt-6 md:pt-0'
+              }`}
             >
-              {/* Subtle top indicator */}
-              <div
-                className={`h-1 w-8 rounded-full bg-gradient-to-r ${stat.color} mb-3 group-hover:w-full transition-all duration-300`}
-              ></div>
-
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+              <div className="text-5xl font-bold text-[#09090b] tracking-tight">
                 {stat.value}
               </div>
-
-              <div className="text-xs font-semibold text-slate-200 mt-1 leading-tight">
+              <div className="text-sm font-semibold text-[#18181b] mt-2">
                 {stat.label}
               </div>
-
-              <div className="text-[11px] text-slate-400 mt-1 leading-snug">
+              <div className="text-xs text-[#52525b] mt-0.5">
                 {stat.sublabel}
               </div>
             </div>

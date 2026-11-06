@@ -11,8 +11,6 @@ import {
   Eye, 
   Zap, 
   FileText,
-  Sliders,
-  CheckCircle2,
   Cpu
 } from 'lucide-react';
 
@@ -42,34 +40,31 @@ export default function ProjectsShowcase() {
   });
 
   return (
-    <section id="projects" className="py-20 relative bg-slate-950/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="bg-white py-20 relative">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-2">
-              <FolderGit2 className="w-3.5 h-3.5" />
-              <span>Engineering & Innovation</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <div className="section-label mb-2">ENGINEERING & INNOVATION</div>
+            <h2 className="text-4xl sm:text-5xl font-bold text-[#09090b] tracking-tight">
               Featured Technical Projects
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+            <p className="text-[#52525b] text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
               From enterprise full-stack RAG systems and machine learning diagnostics to IoT assistive hardware and conversion engines.
             </p>
           </div>
 
-          {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-slate-900 border border-slate-800">
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap items-center gap-2 self-start md:self-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                className={`rounded-[10000px] px-4 py-2 text-sm font-medium transition-colors ${
                   activeCategory === cat
-                    ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                    ? 'bg-[#09090b] text-white'
+                    : 'bg-[#f4f4f5] border border-[#ececee] text-[#18181b] hover:bg-[#ececee]'
                 }`}
               >
                 {cat}
@@ -79,103 +74,110 @@ export default function ProjectsShowcase() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.map((project) => {
             const Icon = (project.iconName && iconMap[project.iconName]) || Sparkles;
 
             return (
               <div
                 key={project.id}
-                className="group relative glass-panel rounded-2xl p-6 sm:p-7 border border-slate-800/90 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between shadow-xl shadow-black/20 hover:-translate-y-1"
+                className="bg-white rounded-[36px] border border-[#ececee] p-7 flex flex-col justify-between hover:border-[#d4d4d8] transition-colors"
               >
                 <div>
                   {/* Top Bar: Icon, Category & Period */}
                   <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-900 to-slate-800 border border-slate-700/80 flex items-center justify-center text-cyan-400 group-hover:text-cyan-300 group-hover:scale-105 transition-all shadow-inner">
+                    <div className="w-12 h-12 rounded-[16px] bg-[#f4f4f5] border border-[#ececee] flex items-center justify-center text-[#18181b]">
                       <Icon className="w-6 h-6" />
                     </div>
 
                     <div className="flex flex-col items-end gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-cyan-950/70 border border-cyan-500/30 text-cyan-300">
+                      <span className="border border-[#ececee] text-xs text-[#71717a] rounded-xl px-2.5 py-0.5 bg-[#fafafa]">
                         {project.category}
                       </span>
-                      <div className="flex items-center gap-1 text-[11px] text-slate-400">
-                        <Calendar className="w-3 h-3 text-slate-500" />
+                      <div className="flex items-center gap-1 text-xs text-[#71717a]">
+                        <Calendar className="w-3.5 h-3.5 text-[#a1a1aa]" />
                         <span>{project.period}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors mb-2">
+                  <h3 className="text-xl font-bold text-[#09090b] mb-1.5">
                     {project.title}
                   </h3>
-                  <p className="text-xs sm:text-sm font-medium text-slate-300 mb-4 leading-relaxed">
+                  <p className="text-sm font-normal text-[#52525b] mb-4 leading-relaxed">
                     {project.subtitle}
                   </p>
 
-                  {/* Highlight Metric Banner if present */}
+                  {/* Metric Highlight: Ember orange badge */}
                   {project.metricsHighlight && (
-                    <div className="mb-4 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-cyan-500/20 flex items-center gap-2">
-                      <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                      <span className="text-xs font-semibold text-cyan-300">
-                        {project.metricsHighlight}
-                      </span>
+                    <div className="mb-4 inline-flex items-center gap-1.5 bg-[#ff5a00] text-white text-xs rounded-xl px-2.5 py-1 font-medium">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>{project.metricsHighlight}</span>
                     </div>
                   )}
 
-                  {/* Bullet points */}
-                  <div className="space-y-2 mb-6">
+                  {/* Bullets */}
+                  <div className="space-y-2.5 mb-6">
                     {project.bullets.map((bullet, bIdx) => (
-                      <div key={bIdx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                      <div key={bIdx} className="flex items-start gap-2.5 text-sm text-[#52525b] leading-[1.45]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#18181b] mt-2 shrink-0"></span>
                         <span>{bullet}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Bottom Tech Stack & Action Links */}
+                {/* Bottom Tech Stack & Type Tag */}
                 <div>
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/80 mb-4">
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#ececee] mb-4">
                     {project.techStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800"
+                        className="bg-[#f4f4f5] text-xs text-[#52525b] rounded-xl px-2.5 py-0.5 font-mono"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Action row */}
-                  {project.id === 'diabetes-prediction' && (
-                    <div className="inline-flex items-center gap-1.5 text-xs text-cyan-400/90 font-medium">
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Streamlit & Scikit-learn Interactive Application</span>
-                    </div>
-                  )}
+                  {/* Bottom Type Tag: filled dark */}
+                  <div>
+                    {project.id === 'diabetes-prediction' && (
+                      <div className="bg-[#3f3f46] text-[#fafafa] text-xs rounded-xl px-2.5 py-1 font-medium inline-flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Streamlit & Scikit-learn Interactive App</span>
+                      </div>
+                    )}
 
-                  {project.id === 'lp-personalization-platform' && (
-                    <div className="inline-flex items-center gap-1.5 text-xs text-indigo-400/90 font-medium">
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Self-Serve Cohort Landing Page Engine</span>
-                    </div>
-                  )}
+                    {project.id === 'lp-personalization-platform' && (
+                      <div className="bg-[#3f3f46] text-[#fafafa] text-xs rounded-xl px-2.5 py-1 font-medium inline-flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Self-Serve Cohort Landing Page Engine</span>
+                      </div>
+                    )}
 
-                  {project.id === 'myhealth-app' && (
-                    <div className="inline-flex items-center gap-1.5 text-xs text-emerald-400/90 font-medium">
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Groq LLM & RAG Full-Stack Architecture</span>
-                    </div>
-                  )}
+                    {project.id === 'myhealth-app' && (
+                      <div className="bg-[#3f3f46] text-[#fafafa] text-xs rounded-xl px-2.5 py-1 font-medium inline-flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Groq LLM & RAG Full-Stack Architecture</span>
+                      </div>
+                    )}
 
-                  {project.id === 'third-eye-blind' && (
-                    <div className="inline-flex items-center gap-1.5 text-xs text-amber-400/90 font-medium">
-                      <Cpu className="w-3.5 h-3.5" />
-                      <span>IoT Hardware & Haptic Assistive Prototype</span>
-                    </div>
-                  )}
+                    {project.id === 'third-eye-blind' && (
+                      <div className="bg-[#3f3f46] text-[#fafafa] text-xs rounded-xl px-2.5 py-1 font-medium inline-flex items-center gap-1.5">
+                        <Cpu className="w-3.5 h-3.5" />
+                        <span>IoT Hardware & Haptic Assistive Prototype</span>
+                      </div>
+                    )}
+
+                    {!['diabetes-prediction', 'lp-personalization-platform', 'myhealth-app', 'third-eye-blind'].includes(project.id) && (
+                      <div className="bg-[#3f3f46] text-[#fafafa] text-xs rounded-xl px-2.5 py-1 font-medium inline-flex items-center gap-1.5">
+                        <FolderGit2 className="w-3.5 h-3.5" />
+                        <span>{project.category} Project</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
               </div>

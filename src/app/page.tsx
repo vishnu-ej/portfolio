@@ -17,7 +17,7 @@ export default function HomePage() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen flex flex-col">
+    <main className="relative min-h-screen flex flex-col bg-[#f4f4f5] text-[#09090b]">
       {/* Top Navbar */}
       <Navbar onOpenResume={() => setIsResumeModalOpen(true)} />
 
